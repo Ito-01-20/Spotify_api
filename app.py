@@ -34,5 +34,6 @@ def getTopSongs(artist_name):
 
 if __name__ == '__main__':
     getTopSongs(input("アーティストの名前を入力してください"))
+    getTopSongs(input("アーティストの名前を入力してください"))
 
 
