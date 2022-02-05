@@ -1,4 +1,5 @@
 import spotipy
+import pprint
 
 # 認証トークン
 client_id = '55cd87a12b9e429498917ac04e0412d7'
@@ -9,6 +10,7 @@ client_credentials_manager = spotipy.oauth2.SpotifyClientCredentials(client_id, 
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
+# アーティストIDの取得
 def getIdByArtist(artist_name):
     results = spotify.search(q="artist:" + artist_name, type="artist")
     items = results["artists"]["items"]
@@ -34,11 +36,22 @@ def getTopSongs(artist_name):
         print("AttributeError has occurred!")
 
 
-if __name__ == '__main__':
-    getTopSongs("Mr.Children")
-    print()
-    getTopSongs("ヨルシカ")
-    print()
-    getTopSongs("oasis")
 
 
+# アーティストの楽曲一覧を取得する
+# results = spotify.artist_albums(artist_id, album_type='single', country='JP', limit=20)
+
+
+# artist_songs = []
+# for song in results['items'][:len(results)]:
+#     data = [
+#         '曲名：' + song['name'],
+#         '発売日：' + song['release_date'],
+#         'id：' + song['id']]
+#     artist_songs.append(data)
+# pprint.pprint(artist_songs)
+
+
+
+if __name__ == "__main__":
+    getTopSongs("King Gnu")
