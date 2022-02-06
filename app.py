@@ -9,8 +9,6 @@ client_secret = 'fe20d9c071684bc597d10dc2a4f4cc44'
 client_credentials_manager = spotipy.oauth2.SpotifyClientCredentials(client_id, client_secret)
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-# show_artist = spotify.artist("0hCWVMGGQnRVfDgmhwLIxq")
-# print((show_artist))
 
 # アーティストIDの取得
 def getIdByArtist(artist_name):
@@ -21,14 +19,20 @@ def getIdByArtist(artist_name):
     return artist_id
 
 
-result1 = getIdByArtist("King Gnu")
-result2 = getIdByArtist("Vaundy")
+# アーティストの総フォロワーを取得
+def get_artist_follwers(artist_name):
+    artist_id = getIdByArtist(artist_name)
+    show_artist = spotify.artist(artist_id)["followers"]["total"]
+    return show_artist
 
 
-def FollowersComparison(result1, result2):
-    if result1["followers"]["total"] > result2["followers"]["total"]:
-        print(result1["name"])
-    else:
-        print(result2["name"])
+# アーティストalbum_id取得
+def get_artist_album_id(album_name):
+    album_id = spotify.albums(album_name)["id"]
+    return album_id
 
-FollowersComparison(result1, result2)
+
+if __name__ == "__main__":
+    artist_id = getIdByArtist("King Gnu")
+    results = spotify.artist_albums(artist_id, album_type='single', country='JP', limit=20)
+    print(results["items"])
