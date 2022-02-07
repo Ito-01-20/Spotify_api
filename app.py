@@ -1,6 +1,5 @@
 import spotipy
 
-
 # 認証トークン
 client_id = '55cd87a12b9e429498917ac04e0412d7'
 client_secret = 'fe20d9c071684bc597d10dc2a4f4cc44'
