@@ -1,4 +1,5 @@
 import spotipy
+import json
 
 # 認証トークン
 client_id = '55cd87a12b9e429498917ac04e0412d7'
@@ -18,6 +19,16 @@ def getIdByArtist(artist_name):
     return artist_id
 
 
+# アーティストのalbumsを取得
+def get_artist_albums(artist_name):
+    artist_id = getIdByArtist(artist_name)
+    album_numbers = spotify.artist_albums(artist_id)["items"]
+    for i in range(len(album_numbers)):
+        albums = spotify.artist_albums(artist_id)["items"][i]["name"]
+        print(albums)
+
+
+
 # アーティストの総フォロワーを取得
 def get_artist_follwers(artist_name):
     artist_id = getIdByArtist(artist_name)
@@ -25,13 +36,6 @@ def get_artist_follwers(artist_name):
     return show_artist
 
 
-# アーティストalbum_id取得
-def get_artist_album_id(album_name):
-    album_id = spotify.albums(album_name)["id"]
-    return album_id
-
-
 if __name__ == "__main__":
-    artist_id = getIdByArtist("King Gnu")
-    results = spotify.artist_albums(artist_id, album_type='single', country='JP', limit=20)
-    print(results["items"])
+    artist_albums = get_artist_albums("King Gnu")
+    print(artist_albums)
