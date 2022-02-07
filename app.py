@@ -23,6 +23,9 @@ def getIdByArtist(artist_name):
 def get_artist_albums(artist_name):
     artist_id = getIdByArtist(artist_name)
     album_numbers = spotify.artist_albums(artist_id)["items"]
+
+    print(f"==========={artist_name} Albums===========")
+
     for i in range(len(album_numbers)):
         albums = spotify.artist_albums(artist_id)["items"][i]["name"]
         print(albums)
@@ -37,5 +40,5 @@ def get_artist_follwers(artist_name):
 
 
 if __name__ == "__main__":
-    artist_albums = get_artist_albums("King Gnu")
-    print(artist_albums)
+    artist_albums = get_artist_albums("Vaundy")
+
