@@ -1,5 +1,4 @@
 import spotipy
-import json
 
 # 認証トークン
 client_id = '55cd87a12b9e429498917ac04e0412d7'
@@ -40,5 +39,5 @@ def get_artist_follwers(artist_name):
 
 
 if __name__ == "__main__":
-    artist_albums = get_artist_albums("Vaundy")
+    artist_albums = get_artist_albums("Tempalay")
 
