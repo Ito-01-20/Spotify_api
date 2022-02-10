@@ -9,18 +9,31 @@ client_credentials_manager = spotipy.oauth2.SpotifyClientCredentials(client_id, 
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
-# アーティストIDの取得
-def getIdByArtist(artist_name):
-    results = spotify.search(q="artist:" + artist_name, type="artist")
-    items = results["artists"]["items"]
-    artist = items[0]
-    artist_id = artist["id"]
-    return artist_id
+class Artist(object):
+
+    def __init__(self, artist_name, artist_id):
+        self.artist_name = artist_name
+        self.artist_id = artist_id
+
+
+    # アーティストIDの取得
+    def getIdByArtist(artist_name):
+        results = spotify.search(q="artist:" + artist_name, type="artist")
+        items = results["artists"]["items"]
+        artist = items[0]
+        artist_id = artist["id"]
+        return artist_id
+
+    # アーティストの総フォロワーを取得
+    def get_artist_follwers(artist_name):
+        artist_id = Artist.getIdByArtist(artist_name)
+        show_artist = spotify.artist(artist_id)["followers"]["total"]
+        return show_artist
 
 
 # アーティストのalbumsを取得
 def get_artist_albums(artist_name):
-    artist_id = getIdByArtist(artist_name)
+    artist_id = Artist.getIdByArtist(artist_name)
     album_numbers = spotify.artist_albums(artist_id)["items"]
 
     print(f"==========={artist_name} Albums===========")
@@ -31,13 +44,9 @@ def get_artist_albums(artist_name):
 
 
 
-# アーティストの総フォロワーを取得
-def get_artist_follwers(artist_name):
-    artist_id = getIdByArtist(artist_name)
-    show_artist = spotify.artist(artist_id)["followers"]["total"]
-    return show_artist
 
 
 if __name__ == "__main__":
-    artist_albums = get_artist_albums("Tempalay")
+   answer = Artist.get_artist_follwers("King Gnu")
+   print(answer)
 
