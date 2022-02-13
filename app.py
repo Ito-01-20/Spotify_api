@@ -53,8 +53,4 @@ def get_album_id(album_name):
 if __name__ == "__main__":
    get_artist_follwers("King Gnu")
    get_artist_albums("King Gnu")
-   answer = get_album_id("Sympa")
-   print(answer)
-   result = get_artist_id("King Gnu")
-   print(result)
 
