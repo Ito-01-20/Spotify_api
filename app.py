@@ -50,7 +50,7 @@ def get_album_id(album_name):
     return album_id
 
 
-# if __name__ == "__main__":
-#    get_artist_follwers("King Gnu")
-#    get_artist_albums("King Gnu")
+if __name__ == "__main__":
+   get_artist_follwers("King Gnu")
+   get_artist_albums("Ado")
 
