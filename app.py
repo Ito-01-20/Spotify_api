@@ -24,6 +24,12 @@ def get_artist_follwers(artist_name):
     show_artist = spotify.artist(artist_id)["followers"]["total"]
     # return show_artist
     print(show_artist)
+    
+# 類似アーティストの取得
+def get_artist_related_artists(artist_name):
+    artist_id = get_artist_id(artist_name)
+    show_related_artists = spotify.artist_related_artists(artist_id)
+    print(show_related_artists)
 
 
 # アーティストのalbumsを全て取得
@@ -51,6 +57,7 @@ def get_album_id(album_name):
 
 
 if __name__ == "__main__":
-   get_artist_follwers("King Gnu")
-   get_artist_albums("Ado")
+#    get_artist_follwers("King Gnu")
+#    get_artist_albums("King Gnu")
+   get_artist_related_artists("King Gnu")
 
